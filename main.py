@@ -68,7 +68,7 @@ def get_words():
     key = config["words_key"]
     region_url = "http://api.tianapi.com/caihongpi/index?key={}".format(key)
     response = get(region_url, headers=headers).json()
-    words = response[content]
+    words = response[newslist][0][content]
     return words
  
 def get_birthday(birthday, year, today):
