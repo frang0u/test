@@ -139,8 +139,15 @@ def send_message(to_user, access_token, region_name, weather, temp, wind_dir, lo
     love_day = int(config["love_date"].split("-")[2])
     love_date = date(love_year, love_month, love_day)
     # 获取在一起的日期差
-    love_days = str(today.__sub__(love_date)).split(" ")[0]
+    love_day0 = int(str(today.__sub__(love_date)).split(" ")[0])
+    love_days=""
     # 获取所有生日数据
+    if love_day0%1000==0:
+        love_days="第"+str(love_day0)+"天,会一直一直爱你的，享受在一起的每一"
+    elif love_day0%100==0:
+        love_days="第"+str(love_day0)+"天，又是我们的一个小里程碑欸，以后还有好多好多个一百"
+    else:
+        love_days=str(love_day0)
     birthdays = {}
     for k, v in config.items():
         if k[0:5] == "birth":
