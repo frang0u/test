@@ -142,19 +142,24 @@ def send_message(to_user, access_token, region_name, weather, temp, wind_dir, lo
     love_day0 = int(str(today.__sub__(love_date)).split(" ")[0])
     love_days=""
     # 获取所有生日数据
+
     if love_day0%1000==0:
         love_days="第"+str(love_day0)+"天,会一直一直爱你的，享受在一起的每一"
+        temp_id=config["template_id_thousand"]
     elif love_day0%100==0:
         love_days="第"+str(love_day0)+"天，又是我们的一个小里程碑欸，以后还有好多好多个一百"
+        temp_id=config["template_id_handred"]
     else:
         love_days=str(love_day0)
+        temp_id=config["template_id"]
     birthdays = {}
     for k, v in config.items():
         if k[0:5] == "birth":
             birthdays[k] = v
+
     data = {
         "touser": to_user,
-        "template_id": config["template_id"],
+        "template_id": temp_id,
         "url": "http://weixin.qq.com/download",
         "topcolor": "#FF0000",
         "data": {
